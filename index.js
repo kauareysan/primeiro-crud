@@ -4,6 +4,8 @@ const Product = require('./models/product.model')
 const productRoute = require('./routes/product.route')
 const app = express()
 
+require('dotenv').config();
+
 app.listen(3000, () => {
     console.log("servidor rodando na porta 3000")
 })
@@ -17,7 +19,7 @@ app.get('/', (req, res) => {
     res.send("hello world")
 })
 
-mongoose.connect('mongodb+srv://kauby:kauasenha@cluster0.qjwsa3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.CONNECTION_STRING)
 .then(() => console.log('Connected!'))
 .catch(() => {
     console.log("connection failed")
